@@ -2,7 +2,10 @@
 This is a class that will allow path dynamics to be analysed
 
 """
-
+import sys,os
+current_file_path = os.path.dirname(__file__) 
+os.chdir(current_file_path)
+sys.path.append('../../../../My_modules/my_basic_modules')
 import my_math as mm# import sub_into_matrix
 import matplotlib.pyplot as plt
 from sympy import Matrix, diff, Transpose, pprint, latex

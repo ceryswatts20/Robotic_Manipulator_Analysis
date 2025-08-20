@@ -11,6 +11,10 @@ from sympy import symbols, Matrix, sin, cos, acos, asin, atan2, sqrt, pprint, di
 from path_dynamics_analysis import path_dynamics as pd
 #from path_dynamics_control import path_dynamics_controller as pdc
 from robot_data_visualisation import two_dof_robot_data_visualisation as rdv
+import sys,os
+current_file_path = os.path.dirname(__file__) 
+os.chdir(current_file_path)
+sys.path.append('../../../../My_modules/my_basic_modules')
 
 import math as m
 import my_math as mm
