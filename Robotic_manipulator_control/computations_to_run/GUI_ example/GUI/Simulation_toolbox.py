@@ -35,11 +35,11 @@ class main_application:
     def __init__(self, master, input_data):
         self.master = master
         master.title("Simulation Toolbox")
-
-
-        self.default_parameter_filename = "default_simulation_parameters.txt"
-        self.default_matlab_parameter_filename = "default_matlab_simulation_parameters.txt"
-        self.default_control_parameter_filename = "default_control_parameters.txt"
+        
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        self.default_parameter_filename = os.path.join(script_dir, "default_simulation_parameters.txt")
+        self.default_matlab_parameter_filename = os.path.join(script_dir, "default_matlab_simulation_parameters.txt")
+        self.default_control_parameter_filename = os.path.join(script_dir, "default_control_parameters.txt")
 
         self.data = input_data
         
@@ -607,8 +607,10 @@ class main_application:
 
 
     def get_default_controller_parameters(self, default_number):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        filename = os.path.join(script_dir, "default_control_parameters.txt")
         
-        with open('default_control_parameters.txt') as json_file:
+        with open(filename) as json_file:
             data = json.load(json_file)
             control_parameters = data['control_parameters'][default_number]
             
