@@ -1,11 +1,24 @@
 
-import sys,os
+import sys, os
+from pathlib import Path
+
+# # Get the absolute path of the current script
+# script_dir = Path(__file__).resolve().parent
+# # Go up 4 levels to reach the repo root
+# repo_root = script_dir.parents[3]
+# # Append module paths
+# sys.path.append(str(repo_root / 'My_modules' / 'my_basic_modules'))
+# sys.path.append(str(repo_root / 'My_modules' / 'my_control_modules'))
+# sys.path.append(str(repo_root / 'Robotic_manipulator_control'))
+# sys.path.append(str(repo_root / 'Robotic_manipulator_control' / 'computations_to_run' / 'GUI_example'))
+
 current_file_path = os.path.dirname(__file__) 
 os.chdir(current_file_path)
 sys.path.append('../../../../My_modules/my_basic_modules')
 sys.path.append('../../../../My_modules/my_control_modules')
 sys.path.append('../../../Robotic_manipulator_control')
 sys.path.append(os.path.realpath('../../..'))
+sys.path.append(os.path.realpath('../../'))
 sys.path.append(os.path.realpath('../'))
 
 from sympy import symbols, sin, cos

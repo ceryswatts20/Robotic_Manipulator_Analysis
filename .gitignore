@@ -1,5 +1,2 @@
 # Ignore Python virtual environment
 .venv/
-
-# Ignore MATLABEngine folder
-MATLABEngine/
