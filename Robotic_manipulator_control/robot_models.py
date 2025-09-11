@@ -11,20 +11,22 @@ from sympy import symbols, Matrix, sin, cos, acos, asin, atan2, sqrt, pprint, di
 from path_dynamics_analysis import path_dynamics as pd
 #from path_dynamics_control import path_dynamics_controller as pdc
 from robot_data_visualisation import two_dof_robot_data_visualisation as rdv
-import sys,os
-current_file_path = os.path.dirname(__file__) 
-os.chdir(current_file_path)
-sys.path.append('../../../../My_modules/my_basic_modules')
 
-import math as m
-import my_math as mm
+import sys,os
+# Get the absolute path of the directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Calculate the absolute path to the project root directory (Robotic_Manipulator_Analysis)
+project_root = os.path.abspath(os.path.join(current_dir, '..'))
+# Add the project root to sys.path this makes 'Robotic_Manipulator_Analysis' 
+# and everything directly under it discoverable
+if project_root not in sys.path:
+    sys.path.insert(0, project_root) # Use insert(0, ...) to prioritize this path
+
+from My_modules.my_basic_modules import my_math as mm
+from My_modules.my_basic_modules import my_sorting as ms
+from My_modules.my_basic_modules import my_visualising as mv
 import numpy as np
 import datetime as dt
-
-#from my_visualising import simple_plot
-import my_visualising as mv
-import my_sorting as ms
-
 import matplotlib.pyplot as plt
 
 

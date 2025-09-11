@@ -3,10 +3,18 @@ This is a class that will allow path dynamics to be analysed
 
 """
 import sys,os
-current_file_path = os.path.dirname(__file__) 
-os.chdir(current_file_path)
-sys.path.append('../../../../My_modules/my_basic_modules')
-import my_math as mm# import sub_into_matrix
+
+# Get the absolute path of the directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Calculate the absolute path to the project root directory (Robotic_Manipulator_Analysis)
+project_root = os.path.abspath(os.path.join(current_dir, '..'))
+# Add the project root to sys.path this makes 'Robotic_Manipulator_Analysis' 
+# and everything directly under it discoverable
+if project_root not in sys.path:
+    sys.path.insert(0, project_root) # Use insert(0, ...) to prioritize this path
+
+# Now, you can import using absolute paths relative to the project root
+from My_modules.my_basic_modules import my_math as mm
 import matplotlib.pyplot as plt
 from sympy import Matrix, diff, Transpose, pprint, latex
 import numpy as np

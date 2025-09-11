@@ -1,14 +1,24 @@
+import sys,os
+# Get the absolute path of the directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Calculate the absolute path to the project root directory (Robotic_Manipulator_Analysis)
+project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..'))
+# Add the project root to sys.path this makes 'Robotic_Manipulator_Analysis' 
+# and everything directly under it discoverable
+if project_root not in sys.path:
+    sys.path.insert(0, project_root) # Use insert(0, ...) to prioritize this path
+
 import sympy
 from sympy import symbols
 
-import functions.ROS_simulations_plotting as plotting
-import functions.ROS_algorithm_simulations as sim
+from Robotic_manipulator_control.computations_to_run.GUI_example.functions import ROS_simulations_plotting as plotting
+from Robotic_manipulator_control.computations_to_run.GUI_example.functions import ROS_algorithm_simulations as sim
 #import functions.ml_ROS_algorithm_simulations as sim
 
 import datetime as dt
 import numpy as np
-from my_sorting import combine_to_tuples
-from functions.controller import path_dynamics_controller
+from My_modules.my_basic_modules.my_sorting import combine_to_tuples
+from Robotic_manipulator_control.computations_to_run.GUI_example.functions.controller import path_dynamics_controller
 import matlab.engine
 import os
 

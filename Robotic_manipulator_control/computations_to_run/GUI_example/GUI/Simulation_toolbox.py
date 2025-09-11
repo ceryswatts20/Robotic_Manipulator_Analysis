@@ -2,34 +2,33 @@
 import sys, os
 from pathlib import Path
 
-# # Get the absolute path of the current script
-# script_dir = Path(__file__).resolve().parent
-# # Go up 4 levels to reach the repo root
-# repo_root = script_dir.parents[3]
-# # Append module paths
-# sys.path.append(str(repo_root / 'My_modules' / 'my_basic_modules'))
-# sys.path.append(str(repo_root / 'My_modules' / 'my_control_modules'))
-# sys.path.append(str(repo_root / 'Robotic_manipulator_control'))
-# sys.path.append(str(repo_root / 'Robotic_manipulator_control' / 'computations_to_run' / 'GUI_example'))
+# Get the absolute path of the directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Calculate the absolute path to the project root directory (Robotic_Manipulator_Analysis)
+project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..', '..'))
+# Add the project root to sys.path this makes 'Robotic_Manipulator_Analysis' 
+# and everything directly under it discoverable
+if project_root not in sys.path:
+    sys.path.insert(0, project_root) # Use insert(0, ...) to prioritize this path
 
-current_file_path = os.path.dirname(__file__) 
-os.chdir(current_file_path)
-sys.path.append('../../../../My_modules/my_basic_modules')
-sys.path.append('../../../../My_modules/my_control_modules')
-sys.path.append('../../../Robotic_manipulator_control')
-sys.path.append(os.path.realpath('../../..'))
-sys.path.append(os.path.realpath('../../'))
-sys.path.append(os.path.realpath('../'))
+# current_file_path = os.path.dirname(__file__) 
+# os.chdir(current_file_path)
+# sys.path.append('../../../../My_modules/my_basic_modules')
+# sys.path.append('../../../../My_modules/my_control_modules')
+# sys.path.append('../../../Robotic_manipulator_control')
+# sys.path.append(os.path.realpath('../../..'))
+# sys.path.append(os.path.realpath('../../'))
+# sys.path.append(os.path.realpath('../'))
 
 from sympy import symbols, sin, cos
 import tkinter as tk
-import run_simulation_code
-import run_controller_code
+from Robotic_manipulator_control.computations_to_run.GUI_example import run_simulation_code
+from Robotic_manipulator_control.computations_to_run.GUI_example import run_controller_code
 import json
 
-from GUI_input_data import input_data
-from configure_steps_to_run_page import configure_steps_to_run
-from plotting_page import plotting
+from Robotic_manipulator_control.computations_to_run.GUI_example.GUI.GUI_input_data import input_data
+from Robotic_manipulator_control.computations_to_run.GUI_example.GUI.configure_steps_to_run_page import configure_steps_to_run
+from Robotic_manipulator_control.computations_to_run.GUI_example.GUI.plotting_page import plotting
 
 class main_application:
     def __init__(self, master, input_data):
@@ -598,8 +597,10 @@ class main_application:
         return parameters
 
     def get_default_simulation_parameters(self, default_number):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        filename = os.path.join(script_dir, "default_simulation_parameters.txt")
         
-        with open('default_simulation_parameters.txt') as json_file:
+        with open(filename) as json_file:
             data = json.load(json_file)
             simulation_parameters = data['simulation_parameters'][default_number]
             

@@ -1,8 +1,18 @@
+import sys,os
+# Get the absolute path of the directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Calculate the absolute path to the project root directory (Robotic_Manipulator_Analysis)
+project_root = os.path.abspath(os.path.join(current_dir, '..', '..'))
+# Add the project root to sys.path this makes 'Robotic_Manipulator_Analysis' 
+# and everything directly under it discoverable
+if project_root not in sys.path:
+    sys.path.insert(0, project_root) # Use insert(0, ...) to prioritize this path
+
 from math import sin, cos, tan, pi
 from sympy import simplify, symbols, Eq, Matrix
 import numpy as np
-from my_sorting import combine_to_tuples, order_states_by_x1
-from intersection_finder import intersection
+from My_modules.my_basic_modules.my_sorting import combine_to_tuples, order_states_by_x1
+from My_modules.my_basic_modules.intersection_finder import intersection
 import matplotlib.pyplot as plt
 
 

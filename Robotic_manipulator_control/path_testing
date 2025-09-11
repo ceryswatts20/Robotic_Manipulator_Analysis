@@ -1,0 +1,51 @@
+import os
+import sys
+
+# --- Debugging Print Statements ---
+print(f"--- Debugging sys.path for robot_models.py ---")
+print(f"__file__: {__file__}")
+print(f"Current working directory (os.getcwd()): {os.getcwd()}")
+# --- End Debugging ---
+
+# 1. Get the absolute path of the directory containing the current file (robot_models.py)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Calculate the absolute path to the project root directory (Robotic_Manipulator_Analysis)
+#    From current_dir, we need to go up two levels:
+#    current_dir / .. / ..  -> Robotic_Manipulator_Analysis/Robotic_manipulator_control / .. / ..
+#    This resolves to /path/to/Robotic_Manipulator_Analysis
+project_root = os.path.abspath(os.path.join(current_dir, '..'))
+
+# --- Debugging Print Statements ---
+print(f"Calculated current_dir: {current_dir}")
+print(f"Calculated project_root: {project_root}")
+# --- End Debugging ---
+
+
+# 3. Add the project root to sys.path if it's not already there
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+    print(f"Added '{project_root}' to sys.path.")
+else:
+    print(f"'{project_root}' already in sys.path.")
+
+# --- Debugging Print Statements ---
+print(f"Final sys.path:")
+for p in sys.path:
+    print(f"  - {p}")
+print(f"--- End Debugging ---")
+
+
+# 4. Now, attempt the import
+try:
+    from My_modules.my_basic_modules import my_math as mm
+    print("Successfully imported my_math!")
+except ModuleNotFoundError as e:
+    print(f"ModuleNotFoundError after sys.path modification: {e}")
+    print("This means Python still can't find 'My_modules' even with the path added.")
+    print("Double-check your directory structure and the 'project_root' calculation.")
+    sys.exit(1) # Exit to prevent further errors if import failed
+
+
+# Example usage:
+# print(mm.some_function())
