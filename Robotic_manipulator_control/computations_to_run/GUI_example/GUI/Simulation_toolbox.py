@@ -11,15 +11,6 @@ project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..', '..')
 if project_root not in sys.path:
     sys.path.insert(0, project_root) # Use insert(0, ...) to prioritize this path
 
-# current_file_path = os.path.dirname(__file__) 
-# os.chdir(current_file_path)
-# sys.path.append('../../../../My_modules/my_basic_modules')
-# sys.path.append('../../../../My_modules/my_control_modules')
-# sys.path.append('../../../Robotic_manipulator_control')
-# sys.path.append(os.path.realpath('../../..'))
-# sys.path.append(os.path.realpath('../../'))
-# sys.path.append(os.path.realpath('../'))
-
 from sympy import symbols, sin, cos
 import tkinter as tk
 from Robotic_manipulator_control.computations_to_run.GUI_example import run_simulation_code
