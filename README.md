@@ -24,16 +24,19 @@ cd "C:\Users\<YourName>\path\to\project\Robotic_Manipulator_Analysis"
 - This creates a folder called `.venv` inside your project, activates it and installs the required packages.
 
 ```powershell
-python3.12 -m venv .venv
-.\.venv\Scripts\activate.ps1
+py -3.12 -m venv .venv
+.\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
 ### 4. Install the MATLAB Engine API
 
-From inside your virtual environment go to where MATLAB is installed, navigate to the python engine and install it.
+Open an administrator powershell terminal, activate your virtual environment, go to where MATLAB is installed, navigate to the python engine and install it.
 
 ```powershell
+cd "C:\Users\<YourName>\path\to\project\Robotic_Manipulator_Analysis"
+.\.venv\Scripts\activate
+cd ~
 cd "C:\Program Files\MATLAB\<your version>\extern\engines\python"
 python -m pip install .
 ```
@@ -44,7 +47,7 @@ python -m pip install .
 python -c "import matlab.engine; print('MATLAB Engine installed successfully')"
 ```
 
-If no error appears, the engine is installed.
+If 'MATLAB Engine installed successfully' is printed in the terminal, then the engine is installed.
 
 ## To Run
 
